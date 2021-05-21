@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ vendeur.nom }}{% endblock %}
+{% block body %}
+<h1>{{ vendeur.nom }}</h1>
+<p>{{ vendeur.Salaire }}</p>
+<p>{{ vendeur.magasin.nom }}</p>
+<hr>
+<a href="/">Retour</a>
+{% endblock %}

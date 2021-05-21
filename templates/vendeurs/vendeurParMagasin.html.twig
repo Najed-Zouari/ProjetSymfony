@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title%} Liste des Vendeurs par Magasin{% endblock %}
+{% block body %}
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.magasin) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form) }}
+{% if vendeurs %}
+ <table id="vendeurs" class="table table-striped">
+ <thead>
+ <tr>
+ <th>Nom</th>
+ <th>Salaire</th>
+ <th>Magasin</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for vendeur in vendeurs %}
+ <tr>
+ <td>{{ vendeur.nom }}</td>
+ <td>{{ vendeur.Salaire }}</td>
+ <td>{{ vendeur.magasin.nom }}</td>
+ <td>
+ <a href="/vendeur/{{ vendeur.id }}" class="btn btn-dark">Détails</a>
+ <a href="/vendeur/edit/{{ vendeur.id }}" class="btn btn-dark">Modifier</a>
+ <a href="/vendeur/delete/{{ vendeur.id }}" class="btn btn-danger" onclick="return confirm('Etesvous sûr de supprimer cet vendeur?');">Supprimer</a>
+ </td>
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+ {% else %}
+ <p>Aucun Magasin</p>
+ {% endif %}
+{% endblock %}
